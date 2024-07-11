@@ -80,23 +80,14 @@ export async function PATCH(req:Request,{params}:{params:{storeId:string,billboa
 export async function DELETE(req:Request,{params}:{params:{storeId:string,billboardId:string}}){
     try {
         const {userId}=auth(); //user id from clerk
-        const  body=await req.json();
-        const label=body.label as string;
-        const imageUrl=body.imageUrl as string;
        
     
         if(!userId){
             return new NextResponse("Unauthenticated",{status:401});
         }
-        if(!label)
-        {
-            return new NextResponse("label is Required",{status:400});
-        }
+     
          
-        if(!imageUrl)
-            {
-                return new NextResponse("image URL is Required",{status:400});
-            }
+
         if(!params.billboardId)
             {
                 return new NextResponse("billboard id is Required",{status:400});
